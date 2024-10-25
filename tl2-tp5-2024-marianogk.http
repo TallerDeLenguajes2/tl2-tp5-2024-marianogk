@@ -1,0 +1,6 @@
+@tl2_tp5_2024_marianogk_HostAddress = http://localhost:5219
+
+GET {{tl2_tp5_2024_marianogk_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
