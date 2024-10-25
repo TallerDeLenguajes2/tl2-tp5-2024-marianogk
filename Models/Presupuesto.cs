@@ -1,16 +1,23 @@
+using EspacioPresupuestoDetalle;
 public class Presupuesto
 {
-    private int idPresupuesto;
-    private string nombreDestinatario;
     private List<PresupuestoDetalle> detalles;
-    public int IdPresupuesto { get => idPresupuesto; set => idPresupuesto = value; }
-    public string NombreDestinatario { get => nombreDestinatario; set => nombreDestinatario = value; }
-    public List<PresupuestoDetalle> Detalles { get => detalles; set => detalles = value; }
-
+    public int IdPresupuesto { get; set; }
+    public string NombreDestinatario { get; set; }
+    public List<PresupuestoDetalle> Detalles { get => detalles; }
     public Presupuesto()
     {
         detalles = new List<PresupuestoDetalle>();
     }
+
+    public void AgregarProducto(Producto prod, int cant)
+    {
+        PresupuestoDetalle pd = new PresupuestoDetalle();
+        pd.CargarProducto(prod);
+        pd.Cantidad = cant;
+        detalles.Add(pd);
+    }
+
     public float MontoPresupuesto()
     {
         float total = 0;
