@@ -6,19 +6,42 @@ using EspacioPresupuestoDetalle;
 namespace EspacioProducto.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class ProductoController : ControllerBase
     {
-        private static Producto _Productos = new Producto();
+        private static List<Producto> _productos = new();
         public ProductoController()
         {
 
         }
 
+        [HttpPost("Producto")]
+        public ActionResult CrearProducto([FromBody] Producto producto)
+        {
+            if (producto == null)
+            {
+                return BadRequest("El producto no puede ser nulo.");
+            }
+            _productos.Add(producto);
+            return CreatedAtAction(nameof(CrearProducto), new { id = producto.IdProducto }, producto);
+        }
+
         [HttpGet("Producto")]
         public ActionResult<List<Producto>> GetProductos()
         {
-            return Ok(_Productos);
+            return Ok(_productos);
+        }
+
+        [HttpPut("Producto/{id}")]
+        public ActionResult ModificarProducto(int idProducto,[FromBody] string nuevaDesc)
+        {
+            var productoBuscado = _productos.FirstOrDefault(p => p.IdProducto == idProducto);
+            if (productoBuscado == null)
+            {
+               return NotFound("Producto no encontrado.");
+            }
+            productoBuscado.Descripcion = nuevaDesc;
+            return NoContent();
         }
     }
 }

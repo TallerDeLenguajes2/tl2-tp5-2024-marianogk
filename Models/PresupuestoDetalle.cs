@@ -4,10 +4,11 @@ namespace EspacioPresupuestoDetalle
     {
         private Producto producto;
         public int Cantidad { get; set; }
-        public Producto Producto { get => producto; }
-        public void CargarProducto(Producto prod)
+        public Producto Producto { get; }
+        public PresupuestoDetalle(Producto prod, int cant)
         {
-            producto = prod;
+            Producto = prod;
+            Cantidad = cant;
         }
     }
 }

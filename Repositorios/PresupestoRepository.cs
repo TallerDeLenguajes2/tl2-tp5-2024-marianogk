@@ -34,10 +34,7 @@ public class PresupuestoRepository : IRepositoryPresupuesto
             }
             else
             {
-                presupuesto.Detalles.Add(new PresupuestoDetalle
-                {
-                    Cantidad = cantidad
-                });
+                presupuesto.Detalles.Add(new PresupuestoDetalle(producto,cantidad));
             }
         }
     }

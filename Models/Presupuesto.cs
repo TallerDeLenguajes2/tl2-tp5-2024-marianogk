@@ -23,7 +23,7 @@ public class Presupuesto
         float total = 0;
         foreach (var p in detalles)
         {
-            total = p.Cantidad * p.Producto.Precio;
+            total += p.Cantidad * p.Producto.Precio;
         }
         return total;
     }
@@ -33,7 +33,7 @@ public class Presupuesto
         const double iva = 1.21;
         foreach (var p in detalles)
         {
-            total = p.Cantidad * p.Producto.Precio * iva;
+            total += p.Cantidad * p.Producto.Precio * iva;
         }
         return total;
     }
