@@ -12,8 +12,8 @@ public class Presupuesto
 
     public void AgregarProducto(Producto prod, int cant)
     {
-        PresupuestoDetalle pd = new PresupuestoDetalle();
-        pd.CargarProducto(prod);
+        PresupuestoDetalle pd = new PresupuestoDetalle(prod,cant);
+        // pd.CargarProducto(prod, cant);
         pd.Cantidad = cant;
         detalles.Add(pd);
     }
